@@ -1,0 +1,96 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import Layout from "../layouts/Layout.astro";
+ 
+---
+
+<Layout title="Welcome to Gazpacho.">
+    <Header />
+    
+    <h1 class="h1">Qui Sommes-nous</h1>
+    <div class="containerAbout">
+        <img src="/foodtruck2.jpeg" alt="Qui sommes-nous" class="photo"/>
+        
+        <div class="flexContainer">
+            <h2>A propos</h2>
+            <div class="line"></div>
+            <div class="containText">
+            <p>Gazpacho est né de la passion culinaire de notre chef, originaire d'Andalousie. Avec des racines profondes dans cette région ensoleillée du sud de l'Espagne, notre food truck propose des plats authentiques et faits maison qui célèbrent la richesse de la cuisine andalouse. Inspiré par les recettes traditionnelles transmises de génération en génération, chaque plat est préparé avec des ingrédients frais et locaux, reflétant les saveurs uniques et vibrantes de l'Andalousie. De la célèbre soupe froide gazpacho aux tapas variées, en passant par les plats de fruits de mer et de viande grillée, nous vous offrons une expérience gastronomique inoubliable. Venez découvrir notre food truck et laissez-vous emporter par un voyage culinaire au cœur de l'Andalousie.</p>
+            <p class="p">Gazpacho est un food truck unique, proposant des plats faits maison inspirés des cuisines du monde entier. Notre chef, fort de ses origines andalouses, fusionne les saveurs internationales pour créer des plats délicieux et innovants. Chaque recette est préparée avec des ingrédients frais, offrant une expérience culinaire globale directement depuis notre camion. Venez savourer un voyage gastronomique autour du monde, servi avec passion et créativité.</p>
+            <div class="containLine">
+            <div class="line"></div>
+            <h2>Le chef</h2>
+        </div>
+        <img src="chef.jpg" alt="">
+            
+            </div>
+            </div>
+    </div></div>
+    <Footer/>
+    </Layout>
+    
+    <style>
+        
+        .containerAbout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            max-width: 56.25rem;
+            margin: 7.5rem auto;
+            position: relative;
+        }
+        .flexContainer{
+display: flex;
+flex-direction: row;
+align-items: flex-start;
+justify-content: space-between;
+width: 100%;
+color: rgb(66, 66, 66);
+padding: 5rem 0;
+
+	& h2{
+		flex-grow: 1;
+		font-size: 1.5rem;
+
+}
+}
+.line{
+width: 25%;
+height: 1px;
+background: rgb(67, 67, 67);
+margin: 20px 0px 0 60px;
+flex-grow: 1;
+}
+.containText{
+display: flex;
+flex-direction: column;
+align-items: end;
+flex-grow: 0;
+
+	& p{
+		text-align: start;
+		max-width: 31.25rem;
+		font-size: 1.5rem;
+        line-height: 3.2rem;
+	}
+    & .p{
+        padding-top: 2rem;
+        max-width: 31.25rem;
+		font-size: 1.1rem;
+        line-height: 1.5rem;
+    }
+	
+}
+.containLine{
+    padding-top: 5rem;
+display: flex;
+width: 100%;
+gap: 4rem;
+justify-content: flex-end;
+    & h2{
+        display: contents;
+    }
+}
+    </style>
