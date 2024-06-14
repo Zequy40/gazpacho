@@ -1,0 +1,139 @@
+---
+
+---
+
+<header>
+    <div class="navbar">
+    <img src="logo.svg" alt="Logo" class="logo">
+    <nav>
+        <button id="menu-button"><svg  xmlns="http://www.w3.org/2000/svg"  width="30"  height="30"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-align-right">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M4 6l16 0" /><path d="M10 12l10 0" />
+        <path d="M6 18l14 0" />
+    </svg></button>
+    </nav>
+    </div>
+    <div id="menu" class="menu hidden">
+      <button id="close-button" class="close-button">X</button>
+      <ul>
+        <li><img src="logo.svg" alt="Logo" class="logoAlt"></li>
+        <li><a href="#" class="a">Menu</a></li>
+        <li><a href="#" class="a">Gazpacho</a></li>
+        <li><a href="#" class="a">Qui sommes-nous</a></li>
+        <li><a href="#" class="a">Contact</a></li>
+        <li><a href="#" class="a">Commande</a></li>
+      </ul>
+    </div>
+</header>
+    
+<script>
+    var menuButton = document.getElementById('menu-button');
+    var closeButton = document.getElementById('close-button');
+    var menu = document.getElementById('menu');
+  
+    menuButton.addEventListener('click', function() {
+      menu.classList.remove('hidden');
+    });
+  
+    closeButton.addEventListener('click', function() {
+      menu.classList.add('hidden');
+    });
+  </script>
+  
+
+    <style>
+    header{ 
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 3;
+    }
+    .logoAlt{
+        height: 6rem;
+    }
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    background-color: rgba(248, 249, 250, 0.2); /* Añade transparencia al color de fondo */
+    backdrop-filter: blur(10px); /* Desenfoca el contenido detrás del navbar */
+}
+    .navbar .logo {
+    height: 6.25rem;
+    }
+    .navbar nav a {
+    margin: 0 1em;
+    text-decoration: none;
+    color: #333;
+    }
+    .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu .close {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 2em;
+  cursor: pointer;
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu ul li .a {
+  color: white;
+  text-decoration: none;
+  font-size: 2em;
+  margin-bottom: 1em;
+  transition: all .5s ease;
+  position: relative;
+    &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 1px;
+        background-color: white;
+        transition: width .5s ease;
+    }
+    &:hover {
+        color: rgb(197, 197, 197);
+        &::after {
+            width: 100%;
+        }
+    }
+}
+.close-button {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 2em;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
+  border-radius: 50%;
+  transition: all .5s ease;
+    &:hover {
+        transform: scale(0.9);
+}
+}
+.hidden {
+  display: none;
+}
+
+    </style>

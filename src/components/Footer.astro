@@ -1,0 +1,64 @@
+<footer>
+    <div class="footer-container">
+        <div class="footer-column">
+            <p class="p">+33 6 35 83 29 18 </p>
+            <p class="pBis">Adresse: Perpignan</p>
+        </div>
+        <div class="footer-column">
+            <p>Les lieux ou nous trouver:</p>
+            <ul class="ul">
+                <li>Carrefour, Perpignan</li>
+                <li>
+                    <ul class="ulBis">Mardi et Jeudi:
+                        <li class="dest">Marché Toulouges, Toulouges</li>
+                        <li class="dest">Marché Toulouges, Toulouges</li>
+                    </ul>
+                </li>
+                <!-- Añade más sitios aquí -->
+            </ul>
+        </div>
+    </div>
+</footer>
+
+
+<style>
+    footer {
+        width: 100%;
+        padding: 8em;
+        background-color: #f8f9fa;
+    }
+
+    .footer-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    .footer-column {
+        flex: 1;
+        padding: 1em;
+        & .pBis{
+            padding: 2rem 0;
+        }
+        & .p{
+            display: inline-block;
+            font-size: 1.2rem;
+		border: 1px solid black;
+		border-radius: 2rem;
+		padding: 0.5rem 1rem;
+        }
+        & .ul{
+            padding-left: 1rem;
+            font-size:1.3rem;
+            & .ulBis{
+                padding-left: 1rem;
+                font-size:1.3rem;
+                font-weight: 600;
+            }
+            & .dest{
+                font-weight:400;
+            }
+        }
+    }
+</style>
