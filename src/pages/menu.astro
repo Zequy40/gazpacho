@@ -1,0 +1,183 @@
+---
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Welcome to Gazpacho.">
+  
+  <h1 class="h1">Qui Sommes-nous</h1>
+  <div class="containerAbout">
+    <img class="pb-4" src="/compBuffet.png" alt="Qui sommes-nous" class="photo" />
+<nav class="nav text-xl w-full py-10">
+  <ul class="flex justify-around">
+    <li><a class="a" href="#menu">Menu</a></li>
+    <li><a class="a" href="#plat">Plat</a></li>
+    <li><a class="a" href="#ptdj">Petit Dejeuner</a></li>
+  </ul>
+</nav>
+<h2 class="text-left pr-16 py-16 text-xl font-semibold">Menu</h2>
+    <div class="containerMenu">
+      <h3 id="menu" class="text-2xl text-center uppercase text-amber-800 font-semibold">Menu complet</h3>
+      <div class="border-b-2 border-solid border-amber-700 pt-5"></div>
+      <div class="grid">
+        <div class="gridItem">
+        <p>Menu Kebab</p>
+        <h2>9€</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Menu Burguer</p>
+        <h2>8€</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Menu Frit</p>
+        <h2>5€</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+      </div>
+      <h3 id="plat" class="text-2xl text-center uppercase text-amber-800 font-semibold pt-20">Plat</h3>
+      <div class="border-b-2 border-solid border-amber-700 pt-5"></div>
+      <div class="grid">
+        <div class="gridItem">
+        <p>Cubano</p>
+          
+        <h2>€8,00</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Gazpacho</p>
+        <h2>€4,00</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Pastelão</p>
+        <h2>€6,00</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Poulet Croustillant</p>
+        <h2>€6,00</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Poulet Rôti</p>
+        <h2>10€</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Pieces De Poulet Bbq</p>
+        <h2>€8,00</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Kebab Seule</p>
+        <h2>€6,00</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Burger Seule</p>
+        <h2>€6,50</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Salade Composée</p>
+        <h2>€8,00</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Salade De Poulpe</p>
+        <h2>€8,00</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        <div class="gridItem">
+        <p>Américain</p>
+        <h2>€8,00</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+      </div>
+      <h3 id="ptdj" class="text-2xl text-center uppercase text-amber-800 font-semibold pt-20">Petit Dejeuner</h3>
+      <div class="border-b-2 border-solid border-amber-700 pt-5"></div>
+      <div class="grid">
+        <div class="gridItem">
+        <p>Churros</p>
+        <h2>2€</h2>
+        <div class="border-b border-dotted border-black pt-5"></div>
+      </div>
+        
+      </div>
+    </div>
+  </div>
+</Layout>
+<Footer />
+
+<style>
+  .containerAbout {
+    display: flex;
+    flex-direction: column;
+    max-width: 56.25rem;
+    margin: 7.5rem auto;
+    position: relative;
+    & .photo {
+      width: 100%;
+      height: auto;
+      max-height: 25rem;
+      object-fit: cover;
+    }
+    & .grid{
+      grid-template-columns: repeat(3, 1fr);
+    }
+    & .gridItem{
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      & h2 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-top: 1rem;
+      }
+      & p {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-top: 1rem;
+        padding-bottom: 1rem;
+      }
+      
+          }
+        }
+        .nav{
+          width: 100%;
+          background-color: #e6e6e6;
+          display: ;
+        & .a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #fff;
+        color: #333;
+        text-decoration: none;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+        transition: box-shadow 0.3s ease;
+        border-radius: 1.3rem;
+
+
+            &:hover {
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+      }
+      }
+  }
+</style>
+<script>
+  var links = document.querySelectorAll('.nav a');
+  var h2Element = document.querySelector('h2');
+
+  links.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      h2Element.textContent = this.textContent;
+
+      var targetId = this.getAttribute('href').slice(1); // quita el caracter '#'
+      var targetElement = document.getElementById(targetId);
+      targetElement.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
