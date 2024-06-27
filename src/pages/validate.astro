@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
-import Command from './command.svelte';
+import Valid from './validate.svelte';
 ---
 
 <Layout title="Welcome to Gazpacho.">
@@ -14,7 +14,7 @@ import Command from './command.svelte';
     </div>
 </div>
     <div class="pt-40">
-<Command client:load/>
+<Valid client:load/>
 </div>
 <Footer/>
 
