@@ -53,16 +53,32 @@
 
     doc.save('JustificatifCommande.pdf');
     clearLocalStorage()
-      window.location.href = '/';
+      
   }
   function clearLocalStorage() {
         if (typeof localStorage !== 'undefined') {
             localStorage.removeItem('orderDetails');
             loadOrderFromLocalStorage();
-            
+            window.location.href = '/';
         }
     }
-
+    function removeOrder(name) {
+        fetch(`https://gazpacho.fr/_admin/api.php/?borrar=${name}`, {
+        method: 'DELETE'
+    })
+            .then(response => {
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((datosRespuesta) => {
+                clearLocalStorage();
+                alert('Commande supprimée avec succès');
+            })
+            .catch(console.log);
+    }
 </script>
 
 <div class="container">
@@ -104,6 +120,8 @@
             <p class='parr'>Commandé le: {order.orderCommande}</p>
         </div>
         <button class='btn2' on:click={generatePDF}>Imprimer et Enregistrer Justificatif</button>
+        <button class='btn2 remove' on:click={() => removeOrder(order.name)}>Eliminer Commande</button>
+        
         <h3 class='h3'><span class='span'>*Attention important:</span><br>
             Appuyer sur le button pour garder votre reçu de la commande et le montrer a l'heure d'aller cherche votre commande. Sans ce justificatifs on ne seras pas dans l'obligation de remettre votre commande. <br>
             Nous n'envoyons pas de mail ni sms de confirmation de votre commande, de lá l'interêt de garder le justificatif.
@@ -157,6 +175,9 @@
             cursor: pointer;
             border-radius: 1rem;
         
+        }
+        & .remove{
+            background-color: #f0352e;
         }
         & .h2{
             font-size: 1.4rem;

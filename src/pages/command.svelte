@@ -88,7 +88,7 @@
     })
     .then(response=>response.json())
     .then((datosRespuesta) => {
-      alert("Commande envoyée")
+      
       localStorage.setItem('orderDetails', JSON.stringify(newCommand));
       window.location.href = '/validate';
     })
