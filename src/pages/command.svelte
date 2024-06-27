@@ -3,6 +3,7 @@
   let name = '';
   let lastName = '';
   
+  
 
   async function fetchProducts() {
     try {
@@ -61,9 +62,14 @@
       .reduce((acc, item) => acc + parseFloat(item.totalPrice), 0)
       .toFixed(2);
   }
+  function getCurrentTime() {
+    const now = new Date()
+    return now.toLocaleString()
+  }
 
   function submitOrder() {
     let orderTime = document.getElementById("orderTime").value;
+    let orderCommande = getCurrentTime()
     if (!orderTime) {
       alert("Svp, Seleccionez l'heure pour recuperer la commande");
       return;
@@ -72,7 +78,9 @@
       product: cart,
       name,
       lastName,
-      date: orderTime
+      date: orderTime,
+      total,
+      orderCommande
     }
     fetch("https://gazpacho.fr/_admin/api.php/?insertar=1", {
       method:"POST",
@@ -81,7 +89,8 @@
     .then(response=>response.json())
     .then((datosRespuesta) => {
       alert("Commande envoyée")
-      console.log(newCommand);
+      localStorage.setItem('orderDetails', JSON.stringify(newCommand));
+      window.location.href = '/validate';
     })
     .catch(console.log)
 
