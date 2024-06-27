@@ -102,17 +102,19 @@
                   </li>
                 {/each}
             {:else}
-                <p>Le panier est vide.</p>
+                <p>Aucune commande en cours.</p>
             {/if}
         </ul>
-        
+        {#if order.total}
         <div class="containP">
             <p class="p1">Total: </p>
-            {#if order.total}
+            
         <p class="p">{order.total}€</p>
-    {/if}
-        </div>
+    
+        </div>{/if}
+        {#if order.product}
         <div class="name-inputs">
+            
             <h2>Données de la commande:</h2>
             <p class='parr'>Commandé par: {order.name}</p>
             <p class='parr'>Prenom: {order.lastName}</p>
@@ -126,7 +128,9 @@
             Appuyer sur le button pour garder votre reçu de la commande et le montrer a l'heure d'aller cherche votre commande. Sans ce justificatifs on ne seras pas dans l'obligation de remettre votre commande. <br>
             Nous n'envoyons pas de mail ni sms de confirmation de votre commande, de lá l'interêt de garder le justificatif.
         </h3>
-       
+        {:else}
+        <!-- Aquí puedes mostrar un mensaje o simplemente dejar este bloque vacío -->
+    {/if}
         
         
     </div>
