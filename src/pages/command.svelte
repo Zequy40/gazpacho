@@ -1,7 +1,10 @@
 <script>
+  import { v4 as uuidv4 } from 'uuid';
+
   let products = [];
   let name = '';
   let lastName = '';
+  let commandNumber = uuidv4();
   
   
 
@@ -74,13 +77,15 @@
       alert("Svp, Seleccionez l'heure pour recuperer la commande");
       return;
     }
+
     const newCommand = {
       product: cart,
       name,
       lastName,
       date: orderTime,
       total,
-      orderCommande
+      orderCommande,
+      commandNumber
     }
     fetch("https://gazpacho.fr/_admin/api.php/?insertar=1", {
       method:"POST",
@@ -156,6 +161,7 @@
       <option value="12:00">12:00</option>
       <option value="12:30">12:30</option>
       <option value="13:00">13:00</option>
+      <option value="20:00">20:00</option>
       <!-- Agrega más opciones de tiempo aquí -->
     </select>
     <div class="name-inputs">

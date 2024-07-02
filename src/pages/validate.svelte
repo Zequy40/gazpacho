@@ -4,7 +4,7 @@
 
     let order = {};
     let total = 0;
-    
+    let errorMessage = '';
 
     onMount(() => {
         loadOrderFromLocalStorage();
@@ -25,6 +25,44 @@
             total = 0;
         }
     }
+    function validateOrderDates(){
+        const orderDateTimeStr = order.orderCommande; //  order.orderCommande es una cadena en formato "DD/MM/YYYY, HH:mm:ss"
+    const orderTimeOnly = order.date; //  order.date es una cadena en formato "HH:mm"
+    
+    // Crear un objeto Date a partir de orderCommande
+    const [datePart, timePart] = orderDateTimeStr.split(', ');
+    const [day, month, year] = datePart.split('/');
+    const orderDate = new Date(year, month - 1, day); // Crear el objeto Date con la fecha
+    
+    // Separar la hora y los minutos de order.date
+    const [hour, minute] = orderTimeOnly.split(':');
+    
+    // Establecer la hora y los minutos en la fecha del pedido
+    orderDate.setHours(hour, minute, 0, 0); // La hora, los minutos, segundos y milisegundos
+    
+    // Obtener el tiempo actual
+    const currentTime = new Date();
+
+    // Comparar las fechas
+    if (orderDate <= currentTime) {
+        const errorMessage = "Veuillez sélectionner une heure future. Heure de la commande: " + orderDate + ", Heure actuelle: " + currentTime;
+        console.log(errorMessage); // O utilizar cualquier método para mostrar el mensaje de error
+        return false;
+    }
+
+    return true;
+    }
+
+    function handleUpdate(name) {
+        if (validateOrderDates()) {
+            
+            // Proceder con la actualización o generación del PDF
+            alert("Commande confirmée")
+            updateOrder(name)
+            generatePDF();
+        }
+    }
+
     function generatePDF() {
     if (!order || !order.product) return;
 
@@ -52,6 +90,7 @@
     doc.text(`Commandé le: ${order.orderCommande}`, 10, yPosition + 20);
 
     doc.save('JustificatifCommande.pdf');
+   
     clearLocalStorage()
       
   }
@@ -62,8 +101,26 @@
             window.location.href = '/';
         }
     }
-    function removeOrder(name) {
-        fetch(`https://gazpacho.fr/_admin/api.php/?borrar=${name}`, {
+    function updateOrder(commandNumber) {
+        fetch(`https://gazpacho.fr/_admin/api.php/?actualizar=${commandNumber}`, {
+        method: 'PUT'
+    })
+            .then(response => {
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then((datosRespuesta) => {
+                
+              
+            })
+            .catch(console.log);
+            
+    }
+    function removeOrder(commandNumber) {
+        fetch(`https://gazpacho.fr/_admin/api.php/?borrar=${commandNumber}`, {
         method: 'DELETE'
     })
             .then(response => {
@@ -121,16 +178,18 @@
             <p class='parr'>Heure pour récupérer la commande: {order.date}</p>
             <p class='parr'>Commandé le: {order.orderCommande}</p>
         </div>
-        <button class='btn2' on:click={generatePDF}>Imprimer et Enregistrer Justificatif</button>
-        <button class='btn2 remove' on:click={() => removeOrder(order.name)}>Eliminer Commande</button>
-        
+        <button class='btn2' on:click={() => handleUpdate(order.commandNumber)}>Imprimer et Enregistrer Justificatif</button>
+        <button class='btn2 remove' on:click={() => removeOrder(order.commandNumber)}>Eliminer Commande</button>
+        {#if errorMessage}
+            <p class="error">{errorMessage}</p>
+        {/if}
         <h3 class='h3'><span class='span'>*Attention important:</span><br>
-            Appuyer sur le button pour garder votre reçu de la commande et le montrer a l'heure d'aller cherche votre commande. Sans ce justificatifs on ne seras pas dans l'obligation de remettre votre commande. <br>
+            Appuyer sur le button pour garder votre reçu de la commande et le montrer a l'heure d'aller cherche votre commande.<br><span class="underline font-semibold">Tant que vous n'imprimez pas la commande, votre commande ne seras pas valider et donc pas préparé.</span><br> Sans ce justificatifs on ne seras pas dans l'obligation de remettre votre commande. <br>
             Nous n'envoyons pas de mail ni sms de confirmation de votre commande, de lá l'interêt de garder le justificatif.
         </h3>
-        {:else}
-        <!-- Aquí puedes mostrar un mensaje o simplemente dejar este bloque vacío -->
+        
     {/if}
+    
         
         
     </div>
@@ -231,6 +290,10 @@
       font-size: 0.8rem;
       color: #9b9b9b;
       font-style: italic;
+    }
+    & .error {
+        color: red;
+        font-weight: bold;
     }
     & .name-inputs{
             padding: 0.5rem;
