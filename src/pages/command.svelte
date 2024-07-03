@@ -77,7 +77,6 @@
       alert("Svp, Seleccionez l'heure pour recuperer la commande");
       return;
     }
-
     const newCommand = {
       product: cart,
       name,
@@ -87,24 +86,22 @@
       orderCommande,
       commandNumber
     }
-    fetch("https://gazpacho.fr/_admin/api.php/?insertar=1", {
-      method:"POST",
-      body:JSON.stringify(newCommand)
-    })
-    .then(response=>response.json())
-    .then((datosRespuesta) => {
-      
-      localStorage.setItem('orderDetails', JSON.stringify(newCommand));
-      window.location.href = '/validate';
-    })
-    .catch(console.log)
+    localStorage.setItem('orderDetails', JSON.stringify(newCommand));
+    window.location.href = '/validate';
 
-    console.log(newCommand);
-  }
-  function vaciarCart() {
-    cart = [];
-    updateTotal();
-    document.getElementById("orderTime").value = "";
+    
+    // fetch("https://gazpacho.fr/_admin/api.php/?insertar=1", {
+    //   method:"POST",
+    //   body:JSON.stringify(newCommand)
+    // })
+    // .then(response=>response.json())
+    // .then((datosRespuesta) => {
+      
+    //   
+    // })
+    // .catch(console.log)
+
+    
   }
   
 </script>
@@ -152,6 +149,7 @@
 
     <select id="orderTime">
       <option value="">Seleccionez l'heure de la commande:</option>
+      <option value="8:00">8:00</option>
       <option value="9:00">9:00</option>
       <option value="9:30">9:30</option>
       <option value="10:00">10:00</option>

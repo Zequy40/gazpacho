@@ -45,7 +45,7 @@
 
     // Comparar las fechas
     if (orderDate <= currentTime) {
-        const errorMessage = "Veuillez sélectionner une heure future. Heure de la commande: " + orderDate + ", Heure actuelle: " + currentTime;
+        errorMessage = `Veuillez sélectionner une heure future. <br>Votre heure de la commande est: ${orderDate},<br> Et l'heure actuelle est: ${currentTime}`;
         console.log(errorMessage); // O utilizar cualquier método para mostrar el mensaje de error
         return false;
     }
@@ -101,24 +101,32 @@
             window.location.href = '/';
         }
     }
-    function updateOrder(commandNumber) {
-        fetch(`https://gazpacho.fr/_admin/api.php/?actualizar=${commandNumber}`, {
-        method: 'PUT'
-    })
-            .then(response => {
-                console.log(response);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then((datosRespuesta) => {
-                
-              
-            })
-            .catch(console.log);
-            
+    function updateDate() {
+        window.location.href = '/updateDate';
     }
+    function updateOrder() {
+    const newCommand = {
+      product: order,
+      name: order.name,
+      lastName: order.lastName,
+      date:order.date,
+      orderCommande:order.orderCommande,
+      commandNumber:order.commandNumber
+    }
+    fetch("https://gazpacho.fr/_admin/api.php/?insertar=1", {
+      method:"POST",
+      body:JSON.stringify(newCommand)
+    })
+    .then(response=>response.json())
+    .then((datosRespuesta) => {
+      
+      clearLocalStorage();
+      window.location.href = '/';
+    })
+    .catch(console.log)
+
+    
+  }
     function removeOrder(commandNumber) {
         fetch(`https://gazpacho.fr/_admin/api.php/?borrar=${commandNumber}`, {
         method: 'DELETE'
@@ -178,10 +186,11 @@
             <p class='parr'>Heure pour récupérer la commande: {order.date}</p>
             <p class='parr'>Commandé le: {order.orderCommande}</p>
         </div>
-        <button class='btn2' on:click={() => handleUpdate(order.commandNumber)}>Imprimer et Enregistrer Justificatif</button>
+        <button class='btn2' on:click={() => handleUpdate(order.commandNumber, order.date)}>Imprimer et Enregistrer Justificatif</button>
         <button class='btn2 remove' on:click={() => removeOrder(order.commandNumber)}>Eliminer Commande</button>
         {#if errorMessage}
-            <p class="error">{errorMessage}</p>
+        <p class="error">{@html errorMessage}</p>
+        <button class='btn2 update' on:click={updateDate}>Modifier Heure</button>
         {/if}
         <h3 class='h3'><span class='span'>*Attention important:</span><br>
             Appuyer sur le button pour garder votre reçu de la commande et le montrer a l'heure d'aller cherche votre commande.<br><span class="underline font-semibold">Tant que vous n'imprimez pas la commande, votre commande ne seras pas valider et donc pas préparé.</span><br> Sans ce justificatifs on ne seras pas dans l'obligation de remettre votre commande. <br>
@@ -241,6 +250,9 @@
         }
         & .remove{
             background-color: #f0352e;
+        }
+        & .update{
+            background-color: #ff9d00;
         }
         & .h2{
             font-size: 1.4rem;

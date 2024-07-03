@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import Update from './updateDate.svelte';
+---
+
+<Layout title="Welcome to Gazpacho.">
+    <div class="header">
+        <div class="containLogo">
+        <div class="logo">
+            <img src="logo.svg" alt="">
+            <p>Gazpacho foodtruck</p>
+        </div>
+    </div>
+</div>
+    <div class="pt-40">
+<Update client:load/>
+</div>
+<Footer/>
+
+</Layout>
+
+<style>
+    .header{
+        max-height: 60vh;
+        height: 50vh;
+        width: 100%;
+        margin-top: 7rem;
+        background-image: url("/foodTruck.jpeg");
+        background-position: center left;
+        & .containLogo{
+            max-width: 75rem;
+            margin: 0 auto;
+        
+            & .logo{
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-start;
+                transform: translate(0, 90%);
+                background-color: rgba(240, 248, 255, 0.411);
+                box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.411);
+                padding: 1rem 2rem;
+                width: 25rem;
+                border-radius: 1rem;
+                & img{
+                    width: 100px;
+                    height: 100px;
+                }
+                & p{
+                    font-size: 2rem;
+                    font-weight: 700;
+                }
+        }
+    }
+    }
+</style>
