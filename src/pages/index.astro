@@ -1,11 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+import IndexMobile from '../components/IndexMobile.astro';
 
 ---
 
 <Layout title="Welcome to Gazpacho.">
-<main>
+<main class="max-md:hidden">
 
 <div class="containerHeader">
 	<div class="intro">
@@ -70,6 +71,9 @@ import Footer from '../components/Footer.astro';
 </div>
 <Footer/>
 </main>
+<div class="md:hidden">
+	<IndexMobile/>
+</div>
 </Layout>
 
 <style>

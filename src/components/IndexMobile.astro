@@ -1,0 +1,74 @@
+---
+import MenuCarte from '../components/MenuCarte.astro';
+---
+<div class="container"><img src="foodTruck.jpeg" alt="">
+
+    <div class="footer-container">
+        <div class="footer-column">
+            <p class="p">+33 6 35 83 29 18 </p>
+           
+        </div>
+        <div class="footer-column">
+            
+            <details id="details">
+                <summary>Les lieux ou nous trouver:</summary>
+            <ul class="ul">
+                <li>Carrefour, Perpignan</li>
+                <li>
+                    <ul class="ulBis">Mardi et Jeudi:
+                        <li class="dest">Marché Toulouges, Toulouges</li>
+                    </ul>
+                </li>
+                <!-- Añade más sitios aquí -->
+            </ul>
+        </details>
+        
+        </div>
+        <MenuCarte />
+    </div>
+</div>
+
+
+<style>
+    .container {
+        width: 100%;
+        
+        background-color: #d9d9d9;
+    }
+
+    .footer-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        margin: auto;
+    }
+
+    .footer-column {
+        flex: 1;
+        padding: 0 0.7rem ;
+       & details{
+        padding-bottom: 1rem;
+       }
+        & .p{
+            display: inline-block;
+            font-size: 0.8rem;
+        }
+        & .ul{
+            
+            font-size:0.9rem;
+            & .ulBis{
+                padding: 0 1rem ;
+                font-size:.9rem;
+                font-weight: 600;
+                display: flex;
+                & li{
+                    padding: 0 1rem ;
+                }
+            }
+            & .dest{
+                font-weight:400;
+            }
+        }
+    }
+</style>
