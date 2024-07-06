@@ -75,11 +75,11 @@
         <li>
           <div class="containerProduct">
             <div class="image">
-              <img src={product.image} alt={product.title} />
+              <img src={`./img/${product.img}`} alt={product.title} />
             </div>
             <div class="col">
               <p>{product.title}</p>
-              <p>{product.parr}</p>
+              <p class="text-xs flex-wrap max-w-[155px]">{product.parr}</p>
             </div>
             <div class="col3">
               <p>{product.price}€</p>
