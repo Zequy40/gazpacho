@@ -1,17 +1,15 @@
+# ---- build ----
 FROM oven/bun:1.2-alpine AS build
 WORKDIR /app
 
 COPY package.json bun.lockb ./
-RUN bun ci
+RUN bun install --frozen-lockfile
 
 COPY . .
 RUN bun run build
 
-# Garantiza que exista /app/build (si Astro generó dist, lo renombra)
-RUN if [ -d dist ] && [ ! -d build ]; then mv dist build; fi
-
+# ---- run ----
 FROM nginx:alpine
-COPY --from=build /app/build /usr/share/nginx/html
-
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
